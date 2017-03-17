@@ -1,0 +1,18 @@
+//File Transfer
+
+The messages sent are arrays of 10 integers
+	1) 1st integer in the array sent by client has the reply port
+	2) 2nd interger is the opcode of the operation that needs to be performed
+		* 0 -> file open
+		* 1 -> file write
+		* 2 -> file close
+	3) the messages are encoded in two ways
+		* for file names we group 4 characters into a single integer
+		* for file write each integer in message represents a character in the file
+	the 2 methods are used for encoding to exhibit the 2 possibilities of representing characters as integers
+
+The server responds with the following messages :-
+	1) OK for success
+	2) NO_OK if the client has to wait for rite operation when are are >=3 files open
+	4) 404 when filenamesize is > 15
+	5) 400 when file size > 1MB
